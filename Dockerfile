@@ -1,7 +1,7 @@
-ARG CLI_IMAGE
-FROM ${CLI_IMAGE:-builder} as builder
-
 FROM amazeeio/php:7.1-fpm
+
+# Configure php.ini
+RUN echo "max_input_vars = 3000" | tee -a /usr/local/etc/php/conf.d/docker-php-ext-maxenvvars.ini
 
 # Add tika.
 RUN apk add --update openjdk7
